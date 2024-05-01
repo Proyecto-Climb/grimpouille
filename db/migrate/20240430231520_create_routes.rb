@@ -5,7 +5,7 @@ class CreateRoutes < ActiveRecord::Migration[7.0]
       t.integer :length
       t.string :grade
       t.integer :style
-      t.boolean :sport
+      t.integer :angle
       t.integer :bolts
       t.references :crag, null: false, foreign_key: true
 
