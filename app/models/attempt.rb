@@ -1,3 +1,5 @@
+# frozen_string_litteral: true
+
 class Attempt < ApplicationRecord
   belongs_to :climb
 

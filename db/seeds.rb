@@ -1,3 +1,5 @@
+# frozen_string_litteral: true
+
 unless Rails.env.production?
   Attempt.destroy_all
   Climb.destroy_all
