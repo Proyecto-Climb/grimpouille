@@ -6,7 +6,6 @@ class CreatePitches < ActiveRecord::Migration[7.0]
       t.string :grade
       t.integer :bolts
       t.integer :angle
-      t.integer :status
       t.references :route, null: false, foreign_key: true
 
       t.timestamps

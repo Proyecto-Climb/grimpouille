@@ -17,6 +17,7 @@ steph = User.create!(first_name: 'Stephane', last_name: 'Lafontaine', email: 's@
 catalunya = Region.create!(name: 'Catalunya')
 siurana = Sector.create!(name: 'Siurana', region: catalunya)
 herbolari = Crag.create!(name: "L'Herbolari", sector: siurana)
+
 brain_storming = Route.create!(
   name: 'Brain Storming',
   grade: '6b',
@@ -32,7 +33,6 @@ brain_storming_pitch = Pitch.create!(
   angle: 2,
   route: brain_storming
 )
-
 
 brain_storming_ines = Climb.create!(climber: ines, route: brain_storming, status: 4) #, attempts: 2)
 brain_storming_steph = Climb.create!(climber: steph, route: brain_storming, status: 3) #, attempts: 2)

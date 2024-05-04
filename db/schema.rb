@@ -48,7 +48,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_04_000945) do
     t.string "grade"
     t.integer "bolts"
     t.integer "angle"
-    t.integer "status"
     t.bigint "route_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
