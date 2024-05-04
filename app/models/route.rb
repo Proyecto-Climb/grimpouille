@@ -3,6 +3,7 @@
 class Route < ApplicationRecord
   belongs_to :crag
   has_many :climbs, dependent: :destroy
+  has_many :pitches, dependent: :destroy
 
   enum style: {
     sport: 1,
