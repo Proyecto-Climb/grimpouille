@@ -10,6 +10,7 @@ class AirtableRoutes < Airrecord::Table
   # Routes table
   CRAG_NAME = 'fldgDpD9BxjyAkBBF'
   CRAG_ID = 'fldGUaY46tlOchQNn'
+  ROUTE_NAME = 'flddGjo667NXE1gzl'
   URL = 'flddGJvbVAUTE1tB6'
   BOLTS = 'fld4Lqy87tc3FKC8K'
   GRADE = 'fld7iqI6ZkVsYCekw'
@@ -17,41 +18,41 @@ class AirtableRoutes < Airrecord::Table
   HEIGHT = 'fldsaRjWqBexWce8R'
   STYLE = 'fldPc9LhdkJPmFGqT'
 
-  # DATA_FILE = 'db/scraped_data/bronze_routes/bronze_routes_data_skaha.json'
+  def self.create_record(route_attributes)
+    create(
+      CRAG_NAME => route_attributes[:crag_name],
+      CRAG_ID => [route_attributes[:id]],
+      ROUTE_NAME => route_attributes[:name],
+      URL => route_attributes[:url],
+      BOLTS => route_attributes[:bolts],
+      GRADE => route_attributes[:grade],
+      STARS => route_attributes[:stars],
+      HEIGHT => route_attributes[:height],
+      STYLE => route_attributes[:style]
+    )
+  end
 
-  # def self.export_to_table
-  #   routes_hash = JSON.parse(File.read(DATA_FILE))
-  #   sector = routes_hash.keys.first
-
-  #   routes_hash.values.flatten.each do |crags|
-  #     crag_name = crags.keys.first
-  #     raw_routes_json = crags[crag_name].to_json
-  #     create_record(sector, crag_name, raw_routes_json)
-  #   end
-  # end
-
-  # def self.create_record(:crag_name, :crag_id, :url, :bolts, :grade, :stars, :height, :style)
-  #   create(
-  #     CRAG_NAME =>
-  #     CRAG_ID =>
-  #     URL =>
-  #     BOLTS =>
-  #     GRADE =>
-  #     STARS =>
-  #     HEIGHT =>
-  #     STYLE =>
-  #   )
-  # end
+  def self.write_to_airtable(crags)
+    crags.each do |crag|
+      crag[:route_infos].each do |route_hash|
+        route_hash[:id] = crag[:id]
+        route_hash[:crag_name] = crag[:crag]
+        create_record(route_hash)
+      end
+    end
+    nil
+  end
 
   def self.extract_routes_data(raw_route_data)
     route_hash = JSON.parse(raw_route_data)
-    # pp route_hash
+
     name = route_hash['name']
     grade = route_hash['gradeAtom']['grade']
     stars = route_hash['stars']&.to_i
+    bolts = route_hash['bolts']&.to_i
     style = route_hash['styleStub']
     height = route_hash['displayHeight']&.first.to_i
-    { name: name, grade: grade, stars: stars, style: style, height: height }
+    { name: name, grade: grade, stars: stars, style: style, height: height, bolts: bolts }
   end
 
   def self.extract_data(raw_data)
