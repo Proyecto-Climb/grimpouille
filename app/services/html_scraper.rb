@@ -45,14 +45,3 @@ end
 
 skaha_routes_by_sectors = { 'skaha' => all_routes_by_sectors }
 write_to_file('skaha', skaha_routes_by_sectors)
-
-
-
-
-# sector_urls.first(1).each_with_object({}) do |link_hash, result_hash|
-#   # sector_name = link_hash.keys.first
-#   route_data = scrape(base_url + link_hash.values.first, selector)
-#   result_hash[sector_name] = route_data
-
-#   write_to_file(sector_name, result_hash)
-# end
