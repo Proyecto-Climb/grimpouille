@@ -2,7 +2,7 @@
 
 require 'airrecord'
 
-class AirtableStuff < Airrecord::Table
+class AirtableCrags < Airrecord::Table
   self.base_key = 'appCoiCY9TIjMfk2I'
   self.table_name = 'tblOwEg9OEvdIkr8E'
   self.api_key = ENV.fetch('AIRTABLE_TOKEN')
