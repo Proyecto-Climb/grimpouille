@@ -17,4 +17,8 @@ class AirtableSeed < Airrecord::Table
   STARS = 'fld1cmJYsAkZr7zH1'
   HEIGHT = 'fldsaRjWqBexWce8R'
   STYLE = 'fldPc9LhdkJPmFGqT'
+
+  def self.format_style(style)
+    style.gsub('-', '_')
+  end
 end

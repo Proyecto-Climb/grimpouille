@@ -2,11 +2,11 @@
 
 class Climb < ApplicationRecord
   belongs_to :route
-  belongs_to :climber, class_name: 'User', foreign_key: 'climber_id'
+  belongs_to :climber, class_name: 'User'
 
   has_many :attempts, dependent: :destroy
 
-  enum status: {
+  enum :status, {
     onsight: 1,
     flash: 2,
     redpoint: 3,

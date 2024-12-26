@@ -3,16 +3,4 @@
 require 'open-uri'
 require 'nokogiri'
 
-class MountainProjectScraperService < BaseService
-  def initialize()
-
-  end
-
-  def call
-
-  end
-
-  private
-
-
-end
+class MountainProjectScraperService < BaseService; end

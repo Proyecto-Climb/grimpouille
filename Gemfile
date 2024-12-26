@@ -63,6 +63,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'brakeman'
   gem 'reek'
+  gem 'rubocop-rails', require: false
 end
 
 group :development do
