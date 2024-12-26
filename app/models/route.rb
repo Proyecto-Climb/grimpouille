@@ -5,13 +5,15 @@ class Route < ApplicationRecord
   has_many :climbs, dependent: :destroy
   has_many :pitches, dependent: :destroy
 
-  enum style: {
+  enum :style, {
     sport: 1,
     trad: 2,
-    mixed: 3
+    mixed: 3,
+    top_rope: 4,
+    unknown: 5
   }
 
-  enum angle: {
+  enum :angle, {
     slab: 1,
     vertical: 2,
     slight_overhang: 3,

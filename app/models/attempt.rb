@@ -3,7 +3,7 @@
 class Attempt < ApplicationRecord
   belongs_to :climb
 
-  enum status: {
+  enum :status, {
     onsight: 1,
     flash: 2,
     redpoint: 3,
