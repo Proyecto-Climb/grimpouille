@@ -1,3 +1,5 @@
+require: rubocop-rails
+
 AllCops:
   NewCops: enable
   Exclude:
@@ -39,4 +41,6 @@ Layout/LineLength:
 Style/EmptyMethod:
   Enabled: false
 Bundler/OrderedGems:
+  Enabled: false
+Style/FileWrite:
   Enabled: false
