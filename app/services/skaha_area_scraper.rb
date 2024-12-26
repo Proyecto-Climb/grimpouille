@@ -4,9 +4,8 @@ require 'open-uri'
 require 'nokogiri'
 require 'json'
 
-
 def fetch_nokogiri_doc(url)
-  pp html = URI.open(url).read
+  html = URI.open(url).read
   Nokogiri::HTML.parse(html)
 end
 
@@ -19,21 +18,14 @@ def write_to_file(area_name, routes_data)
 end
 
 def scrape(link, selector)
-  pp html_doc = fetch_nokogiri_doc(link)
+  html_doc = fetch_nokogiri_doc(link)
 
-  routes_data = html_doc.search(selector).map do |element|
-    pp element
-    # begin
-      pp name = element.search('div.title > span.name').text.strip
-      pp data = element.attribute('data-route-tick').value
-      pp link = element.search('div.title > span.name > a').attribute('href').value
-    pp { name => { link: link, data: data } }
-    # rescue NoMethodError
-    #   p 'error'
-    # end
+  html_doc.search(selector).map do |element|
+    name = element.search('div.title > span.name').text.strip
+    data = element.attribute('data-route-tick').value
+    link = element.search('div.title > span.name > a').attribute('href').value
+    { name => { link: link, data: data } }
   end
-
-  routes_data
 end
 
 base_url = 'https://www.thecrag.com'

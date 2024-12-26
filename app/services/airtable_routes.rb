@@ -18,7 +18,7 @@ class AirtableRoutes < Airrecord::Table
   HEIGHT = 'fldsaRjWqBexWce8R'
   STYLE = 'fldPc9LhdkJPmFGqT'
 
-  def self.create_record(route_attributes)
+  def self.create_record(route_attributes) # rubocop:disable Metrics/MethodLength
     create(
       CRAG_NAME => route_attributes[:crag_name],
       CRAG_ID => [route_attributes[:id]],
@@ -67,7 +67,7 @@ class AirtableRoutes < Airrecord::Table
 
   def self.fetch_raw_routes
     all_crags = AirtableCrags.all
-    all_route_data = all_crags.map do |crag|
+    all_crags.map do |crag|
       route_data = {}
       route_data[:id] = crag.id
       route_data[:region] = crag.fields['Region']
@@ -76,6 +76,5 @@ class AirtableRoutes < Airrecord::Table
       route_data[:route_infos] = extract_data(JSON.parse(crag.fields['Raw Routes']))
       route_data
     end
-    all_route_data
   end
 end

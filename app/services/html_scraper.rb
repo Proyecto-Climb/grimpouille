@@ -3,7 +3,6 @@
 require 'nokogiri'
 require 'json'
 
-
 def parse_to_nokogiri_doc(html)
   Nokogiri::HTML.parse(html)
 end
@@ -16,20 +15,19 @@ def write_to_file(region_name, routes_data)
   end
 end
 
-def scrape(doc)
+def scrape(doc) # rubocop:disable Metrics/MethodLength
   selector = 'div.route'
   routes_data = []
 
   sector_name = doc.search('h1 > span.heading__t').text.strip
 
   doc.search(selector).each do |element|
-    begin
-      name = element.search('div.title > span.name').text.gsub('★', '').strip
-      data = element.attribute('data-route-tick').value
-      link = element.search('div.title > span.name > a').attribute('href').value
-      routes_data << { name => { link: link, data: data } }
-    rescue NoMethodError
-    end
+    name = element.search('div.title > span.name').text.gsub('★', '').strip
+    data = element.attribute('data-route-tick').value
+    link = element.search('div.title > span.name > a').attribute('href').value
+    routes_data << { name => { link: link, data: data } }
+  rescue NoMethodError
+    # Do nothing
   end
 
   { sector_name => routes_data }
@@ -38,8 +36,8 @@ end
 folderpath = 'db/scraped_data/skaha_data/skaha_html_files/*.html'
 all_routes_by_sectors = []
 
-Dir::glob(folderpath) do |html_file|
-  doc = parse_to_nokogiri_doc(File.open(html_file).read)
+Dir.glob(folderpath) do |html_file|
+  doc = parse_to_nokogiri_doc(File.read(html_file))
   all_routes_by_sectors << scrape(doc)
 end
 
