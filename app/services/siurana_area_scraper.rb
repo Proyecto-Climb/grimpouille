@@ -29,7 +29,7 @@ def scrape(link, selector)
 end
 
 base_url = 'https://www.thecrag.com'
-filepath = 'db/scraped_data/skaha_bronze.json'
+filepath = 'db/scraped_data/bronze_data/siurana_bronze.json'
 selector = 'div.route'
 sector_urls = JSON.parse(File.read(filepath))
 
