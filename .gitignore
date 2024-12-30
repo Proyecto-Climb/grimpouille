@@ -37,3 +37,5 @@
 .DS_Store
 
 /db/scraped_data/*
+!/db/scraped_data/
+!/db/scraped_data/.keep
