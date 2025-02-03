@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_12_26_013700) do
+ActiveRecord::Schema[7.0].define(version: 2025_02_03_222021) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_12_26_013700) do
   create_table "pitches", force: :cascade do |t|
     t.integer "length"
     t.integer "position"
-    t.string "grade"
+    t.string "pitch_grade"
     t.integer "bolts"
     t.integer "angle"
     t.bigint "route_id", null: false
