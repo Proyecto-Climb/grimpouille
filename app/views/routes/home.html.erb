@@ -1,0 +1,7 @@
+<h1>Home</h1>
+
+<%= form_with url: recommendations_path, method: :get do |form| %>
+  <%= form.label :query, "Select a route to project" %>
+  <%= form.collection_select :route_id, @routes, :id, :name %>
+  <%= form.submit "Search" %>
+<% end %>

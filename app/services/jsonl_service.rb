@@ -3,7 +3,6 @@
 require 'jsonl_reader_writer'
 
 class JsonlService
-
   input_filepath = 'db/scraped_data/bronze_routes/bronze_routes_data_skaha.json'
 
   # pp records = JSON.parse(File.read(input_filepath))['skaha']
