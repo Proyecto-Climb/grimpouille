@@ -4,32 +4,35 @@ class RoutesController < ApplicationController
   include OpenAiService
 
   skip_before_action :authenticate_user!
+  before_action :defined_routes
 
-  def home
-    @routes = Route.order(name: :asc)
-  end
+  def home; end
 
   def recommendations
-    project = Route.find(params[:route_id])
+    project = Route.find_by(id: params[:route_id])
 
     if project
-      training_routes = Route.where("grade <= ?", project.grade)
-                              .order("RANDOM()")
+      training_routes = Route.where(grade: ..project.grade)
+                             .order("RANDOM()")
 
       recommended_routes = training_routes.limit(5)
 
-      response = enhance_response(project, recommended_routes)
-      raise
+      @response = enhance_response(project, recommended_routes)
 
-      # schedule = generate_schedule(recommended_routes)
-
-      render json: { project: project.name, recommendations: recommended_routes, schedule: schedule }
+      # render json: { project: project.name, recommendations: recommended_routes, schedule: schedule }
     else
-      render json: { error: "Project route not found" }, status: :not_found
+      # render json: { error: "Project route not found" }, status: :not_found
+      @error_message = 'Couldn\'t find your project 😕'
     end
+
+    render :home
   end
 
   private
+
+  def defined_routes
+    @defined_routes ||= Route.order(name: :asc)
+  end
 
   def generate_schedule(routes)
     days = %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday]

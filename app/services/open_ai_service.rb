@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module OpenAiService
-  def enhance_response(project, recommended_routes)
+  def enhance_response(project, recommended_routes) # rubocop:disable Metrics/MethodLength
     client = OpenAI::Client.new
 
     response = client.chat(
@@ -14,7 +14,7 @@ module OpenAiService
           { role: 'user', content: "Project Route (JSON): #{project.attributes.to_json}" },
           { role: 'user', content: "Potential Training Routes (JSON): #{recommended_routes.map(&:attributes).to_json}" }
         ],
-        temperature: 0.7,
+        temperature: 0.7
       }
     )
 
