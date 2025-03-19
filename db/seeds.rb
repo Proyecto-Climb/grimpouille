@@ -9,6 +9,8 @@ unless Rails.env.production?
   Crag.destroy_all
   Sector.destroy_all
   Region.destroy_all
+  Province.destroy_all
+  Country.destroy_all
 end
 
 ines = User.create!(first_name: 'Ines', last_name: 'Alvergne', email: 'i@i.i', password: 111111)
@@ -46,7 +48,13 @@ steph = User.create!(first_name: 'Stephane', last_name: 'Lafontaine', email: 's@
 # brain_storming_steph_attempt1 = Attempt.create!(date: attempt_date_day1, notes: 'Wouaahhhh', status: 4, climb: brain_storming_steph)
 # brain_storming_steph_attempt2 = Attempt.create!(date: attempt_date_day2, notes: 'Wouhou!', status: 3, climb: brain_storming_steph)
 
-okanagan_valley = Region.create!(name: 'Okanagan Valley')
+canada = Country.create!(name: 'Canada', grading_system: 'YDS')
+puts 'Creating Canada country'
+
+bc = Province.create!(name: 'British Columbia', country: canada)
+puts 'Creating British Columbia province'
+
+okanagan_valley = Region.create!(name: 'Okanagan Valley', province: bc)
 puts 'Creating okanagan_valley region'
 
 skaha = Sector.create!(name: 'Skaha', region: okanagan_valley)
