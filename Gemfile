@@ -58,6 +58,9 @@ gem 'ruby-openai'
 gem 'simple_form', github: 'heartcombo/simple_form'
 gem 'sassc-rails'
 
+# Custom
+gem 'foreman'
+
 group :development, :test do
   gem 'brakeman'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
