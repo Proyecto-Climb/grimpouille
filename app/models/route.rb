@@ -27,19 +27,20 @@ class Route < ApplicationRecord
     roof: 5
   }
 
-  before_commit :set_standardized_grade
+  before_commit :sanitize_grade_and_set_standardized_grade, if: :will_save_change_to_grade?
 
   private
 
-  def set_standardized_grade
+  def sanitize_grade_and_set_standardized_grade
     case country.grading_system
-      when 'YDS'
-        clean_grade = clean_up_yds_grade(grade)
-        self.standardized_grade = YDS[clean_grade]
-      when 'EU'
-        # self.standardized_grade = EU_SYSTEM[grade]
-      end
+    when 'YDS'
+      sanitized_grade = sanitize_yds_grade(grade)
+      self.standardized_grade = YDS[sanitized_grade]
+    when 'EU'
+      # self.standardized_grade = EU_SYSTEM[grade]
+    end
 
-      self.grade = clean_grade
+    self.grade = sanitized_grade
+    save!
   end
 end

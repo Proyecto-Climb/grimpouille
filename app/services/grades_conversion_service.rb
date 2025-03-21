@@ -79,35 +79,40 @@ module GradesConversionService
       \A(?<double_digit_in_between_letters>5\.\d{2}[a-d]\/[a-d])|
       (?<double_digit_in_between_numbers>5\.\d{2}[a-d]\/\d{2}[a-d])|
       (?<clean_double_digit>5\.\d{2}[a-d])|
-      (?<plus>5\.\d{1,2}\+)|
-      (?<minus>5\.\d{1,2}-)|
+      (?<double_digit_plus>5\.\d{2}\+)|
+      (?<double_digit_minus>5\.\d{2}-)|
+      (?<single_digit_plus>5\.\d\+)|
+      (?<single_digit_minus>5\.\d-)|
       (?<clean_single_digit>5\.\d{1})\z
     /ix
 
-  # class << self
-    def clean_up_yds_grade(grade)
-      match_data = GradesConversionService::YDS_REGEX.match(grade)
+  def sanitize_yds_grade(grade)
+    match_data = GradesConversionService::YDS_REGEX.match(grade)
 
-      grade = if match_data[:double_digit_in_between_letters]
-                grade.gsub(/[a-c]\//, '')
-              elsif match_data[:double_digit_in_between_numbers]
-                grade.gsub(/\d{2}[a-d]\//, '')
-              elsif match_data[:plus]
-                grade.gsub(/\+/, 'd')
-              elsif match_data[:minus]
-                grade.gsub(/\+/, 'a')
-              else
-                grade
-              end
+    if match_data[:double_digit_in_between_letters]
+      grade.gsub(/[a-c]\//, '')
+    elsif match_data[:double_digit_in_between_numbers]
+      grade.gsub(/\d{2}[a-d]\//, '')
+    elsif match_data[:double_digit_plus]
+      grade.gsub('+', 'd')
+    elsif match_data[:double_digit_minus]
+      grade.gsub('-', 'a')
+    elsif match_data[:single_digit_plus]
+      sanitize_single_digit_plus(grade)
+    elsif match_data[:single_digit_minus]
+      grade.gsub('-', '')
+    else
+      grade
     end
+  end
 
-    # def self.convert_to_yds(grade)
-    #   debugger
-    #   YDS[grade]
-    # end
+  def sanitize_single_digit_plus(grade)
+    split_grade = grade.gsub('+', '').split('.')
+    split_grade[-1] = convert_last_digit(split_grade[-1].to_i)
+    split_grade.join('.')
+  end
 
-    # def self.convert_to_eu(grade)
-    #   EU_SYSTEM.key(grade)
-    # end
-  # end
+  def convert_last_digit(digit)
+    digit == 9 ? '10a' : (digit + 1).to_s
+  end
 end

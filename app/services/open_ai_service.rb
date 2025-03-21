@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module OpenAiService
-  def enhance_response(project, recommended_routes) # rubocop:disable Metrics/MethodLength
+  def enhance_response(project, recommended_routes)
     client = OpenAI::Client.new
 
     response = client.chat(

@@ -16,7 +16,7 @@ def write_to_file(region_name, routes_data)
   end
 end
 
-def scrape(doc) # rubocop:disable Metrics/MethodLength
+def scrape(doc)
   selector = 'div.route'
   routes_data = []
 

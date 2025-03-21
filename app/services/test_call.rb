@@ -66,7 +66,7 @@ def fetch_nokogiri_doc(url)
 end
 
 def scrape(link, selector)
-  pp html_doc = fetch_nokogiri_doc(link)
+  html_doc = fetch_nokogiri_doc(link)
 
   html_doc.search(selector).map do |element|
     pp element
@@ -80,8 +80,6 @@ end
 # filepath = 'db/scraped_data/siurana_bronze.json'
 # selector = 'div.route'
 # sector_urls = JSON.parse(File.read(filepath))
-
-
 
 # routes = sector_urls.first(1).each_with_object({}) do |link_hash, result_hash|
 #                                 area_name = link_hash.keys.first
