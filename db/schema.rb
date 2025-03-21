@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_02_03_222021) do
+ActiveRecord::Schema[7.0].define(version: 2025_03_19_192616) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +34,13 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_03_222021) do
     t.index ["route_id"], name: "index_climbs_on_route_id"
   end
 
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.string "grading_system", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "crags", force: :cascade do |t|
     t.string "name"
     t.bigint "sector_id", null: false
@@ -54,10 +61,20 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_03_222021) do
     t.index ["route_id"], name: "index_pitches_on_route_id"
   end
 
+  create_table "provinces", force: :cascade do |t|
+    t.string "name"
+    t.bigint "country_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_provinces_on_country_id"
+  end
+
   create_table "regions", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "province_id", null: false
+    t.index ["province_id"], name: "index_regions_on_province_id"
   end
 
   create_table "routes", force: :cascade do |t|
@@ -70,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_03_222021) do
     t.integer "stars", default: 0
     t.string "url"
     t.integer "height", default: 0
+    t.integer "standardized_grade"
     t.index ["crag_id"], name: "index_routes_on_crag_id"
   end
 
@@ -100,6 +118,8 @@ ActiveRecord::Schema[7.0].define(version: 2025_02_03_222021) do
   add_foreign_key "climbs", "users", column: "climber_id"
   add_foreign_key "crags", "sectors"
   add_foreign_key "pitches", "routes"
+  add_foreign_key "provinces", "countries"
+  add_foreign_key "regions", "provinces"
   add_foreign_key "routes", "crags"
   add_foreign_key "sectors", "regions"
 end

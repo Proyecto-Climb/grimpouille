@@ -15,7 +15,7 @@ class JsonlService
       writer.write(data)
     end
 
-    def format_data # rubocop:disable Metrics/MethodLength
+    def format_data
       Route.includes(:pitches).map do |route|
         pitch = route.pitches.first
         {
