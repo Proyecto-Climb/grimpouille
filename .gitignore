@@ -39,8 +39,5 @@
 /db/scraped_data/html_files/*/
 /db/scraped_data/crags_data/*/
 !/db/scraped_data/crags_data/
-!/db/scraped_data/crags_data/.keep
 /db/scraped_data/routes_data/*/
 !/db/scraped_data/routes_data/
-!/db/scraped_data/routes_data/.keep
-!/db/scraped_data/.keep
