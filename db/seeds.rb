@@ -75,7 +75,7 @@ AirtableSeed.all.each do |route_data|
     route = Route.create!(
       name: route_data['Route name'],
       grade: route_data['Grade'],
-      style: ::AirtableSeed.format_style(route_data['Style']),
+      style: AirtableSeed.format_style(route_data['Style']),
       crag: Crag.find_by_name(route_data['Crag']),
       stars: route_data['Stars'],
       url: route_data['URL'],
@@ -83,7 +83,6 @@ AirtableSeed.all.each do |route_data|
       )
 
     pitch = Pitch.new(
-      pitch_grade: route_data['Grade'],
       position: 1,
       length: route.height,
       pitch_grade: route.grade,
