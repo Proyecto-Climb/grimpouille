@@ -2,6 +2,7 @@
 
 module GradesConversionService
   YDS = {
+    '5.0' => 0,
     '5.1' => 1,
     '5.2' => 2,
     '5.3' => 3,
@@ -39,6 +40,7 @@ module GradesConversionService
   }
 
   EU_SYSTEM = {
+    '-2' => 0,
     '-1' => 1,
     '0' => 2,
     '1' => 3,
@@ -79,6 +81,7 @@ module GradesConversionService
       \A(?<double_digit_in_between_letters>5\.\d{2}[a-d]\/[a-d])|
       (?<double_digit_in_between_numbers>5\.\d{2}[a-d]\/\d{2}[a-d])|
       (?<clean_double_digit>5\.\d{2}[a-d])|
+      (?<double_digit_no_letter>5\.\d{2})|
       (?<double_digit_plus>5\.\d{2}\+)|
       (?<double_digit_minus>5\.\d{2}-)|
       (?<single_digit_plus>5\.\d\+)|
@@ -94,6 +97,8 @@ module GradesConversionService
         grade.gsub(/[a-c]\//, '')
       elsif match_data[:double_digit_in_between_numbers]
         grade.gsub(/\d{2}[a-d]\//, '')
+      elsif match_data[:double_digit_no_letter]
+        "#{match_data[:double_digit_no_letter]} 'c'"
       elsif match_data[:double_digit_plus]
         grade.gsub('+', 'd')
       elsif match_data[:double_digit_minus]
@@ -102,11 +107,11 @@ module GradesConversionService
         sanitize_single_digit_plus(grade)
       elsif match_data[:single_digit_minus]
         grade.gsub('-', '')
-      else
-        grade
+      elsif match_data[:clean_double_digit] || match_data[:clean_single_digit]
+        match_data[:clean_double_digit] || match_data[:clean_single_digit]
       end
     else
-      grade
+      '5.0'
     end
   end
 

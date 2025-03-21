@@ -27,7 +27,7 @@ Metrics/AbcSize:
 Metrics/ModuleLength:
   Max: 200
 Metrics/MethodLength:
-  Max: 20
+  Max: 25
 Style/MutableConstant:
   Enabled: false
 Style/SignalException:
