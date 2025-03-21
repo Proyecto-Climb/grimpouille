@@ -6,26 +6,29 @@ class RoutesController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :defined_routes
 
-  def home; end
+  def select_project; end
 
   def recommendations
-    project = Route.find_by(id: params[:route_id])
+    @project = Route.find_by(id: params[:route_id])
 
-    if project
-      training_routes = Route.where(grade: ..project.grade)
+    if @project
+      training_routes = Route.where(
+                                    standardized_grade: ...@project.standardized_grade,
+                                    style: @project.style
+                                    )
                              .order("RANDOM()")
 
-      recommended_routes = training_routes.limit(5)
+      pp recommended_routes = training_routes.limit(5)
 
-      @response = enhance_response(project, recommended_routes)
+      @response = enhance_response(@project, recommended_routes)
 
-      # render json: { project: project.name, recommendations: recommended_routes, schedule: schedule }
+      # render json: { @project: @project.name, recommendations: recommended_routes, schedule: schedule }
     else
-      # render json: { error: "Project route not found" }, status: :not_found
+      # render json: { error: "@Project route not found" }, status: :not_found
       @error_message = 'Couldn\'t find your project 😕'
     end
 
-    render :home
+    render :select_project
   end
 
   private
