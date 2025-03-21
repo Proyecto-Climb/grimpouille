@@ -89,18 +89,22 @@ module GradesConversionService
   def sanitize_yds_grade(grade)
     match_data = GradesConversionService::YDS_REGEX.match(grade)
 
-    if match_data[:double_digit_in_between_letters]
-      grade.gsub(/[a-c]\//, '')
-    elsif match_data[:double_digit_in_between_numbers]
-      grade.gsub(/\d{2}[a-d]\//, '')
-    elsif match_data[:double_digit_plus]
-      grade.gsub('+', 'd')
-    elsif match_data[:double_digit_minus]
-      grade.gsub('-', 'a')
-    elsif match_data[:single_digit_plus]
-      sanitize_single_digit_plus(grade)
-    elsif match_data[:single_digit_minus]
-      grade.gsub('-', '')
+    if match_data
+      if match_data[:double_digit_in_between_letters]
+        grade.gsub(/[a-c]\//, '')
+      elsif match_data[:double_digit_in_between_numbers]
+        grade.gsub(/\d{2}[a-d]\//, '')
+      elsif match_data[:double_digit_plus]
+        grade.gsub('+', 'd')
+      elsif match_data[:double_digit_minus]
+        grade.gsub('-', 'a')
+      elsif match_data[:single_digit_plus]
+        sanitize_single_digit_plus(grade)
+      elsif match_data[:single_digit_minus]
+        grade.gsub('-', '')
+      else
+        grade
+      end
     else
       grade
     end

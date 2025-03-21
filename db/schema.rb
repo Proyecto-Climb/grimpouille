@@ -73,7 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_19_192616) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "province_id"
+    t.bigint "province_id", null: false
     t.index ["province_id"], name: "index_regions_on_province_id"
   end
 

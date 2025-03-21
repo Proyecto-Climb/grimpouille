@@ -27,7 +27,8 @@ class Route < ApplicationRecord
     roof: 5
   }
 
-  before_commit :sanitize_grade_and_set_standardized_grade, if: :will_save_change_to_grade?
+  after_create :sanitize_grade_and_set_standardized_grade
+  # before_commit :sanitize_grade_and_set_standardized_grade, if: :will_save_change_to_grade?
 
   private
 
