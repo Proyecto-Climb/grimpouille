@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RoutesController < ApplicationController
-  include OpenAiService
+  include AI::OpenAIService
 
   skip_before_action :authenticate_user!
   before_action :defined_routes

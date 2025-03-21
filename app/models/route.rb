@@ -28,7 +28,7 @@ class Route < ApplicationRecord
   }
 
   after_create :sanitize_grade_and_set_standardized_grade
-  # before_commit :sanitize_grade_and_set_standardized_grade, if: :will_save_change_to_grade?
+  # before_update :sanitize_grade_and_set_standardized_grade, if: :will_save_change_to_grade?
 
   private
 
