@@ -1,4 +1,4 @@
-name: "Ruby on Rails CI"
+name: "Ruby on Rails CI: RSpec & Rubocop"
 on: push
 jobs:
   test:
@@ -42,7 +42,7 @@ jobs:
         with:
           bundler-cache: true
       - name: Lint Ruby files
-        run: bundle exec rubocop --parallel
+        run: bundle exec rubocop
       # - name: Generate binstubs
       #   run: bundle binstubs bundler-audit brakeman rubocop
       # - name: Security audit dependencies
