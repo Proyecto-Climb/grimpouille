@@ -1,3 +1,5 @@
+inherit_from: .rubocop_todo.yml
+
 require: rubocop-rails
 
 AllCops:
@@ -11,6 +13,7 @@ AllCops:
     - 'support/**/*'
     - 'tmp/**/*'
     - 'test/**/*'
+    - 'vendor/**/*'
 
 Style/ConditionalAssignment:
   Enabled: false
@@ -51,3 +54,5 @@ Bundler/OrderedGems:
   Enabled: false
 Style/FileWrite:
   Enabled: false
+inherit_gem:
+  rubocop-discourse: default.yml

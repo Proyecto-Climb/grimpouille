@@ -1,6 +1,6 @@
 # frozen_string_litteral: true
 
-class ApplicationService
+class BaseService
   def self.call(...)
     new(...).call
   end
