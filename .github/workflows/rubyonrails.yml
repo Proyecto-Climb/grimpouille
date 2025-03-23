@@ -15,8 +15,8 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
-      AIRTABLE_TOKEN: airtable_token
-      AIRTABLE_BASE: airtable_base
+      # AIRTABLE_TOKEN: airtable_token
+      # AIRTABLE_BASE: airtable_base
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
