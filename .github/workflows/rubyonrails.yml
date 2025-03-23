@@ -2,18 +2,6 @@ name: "Ruby on Rails CI"
 on: push
 jobs:
   test:
-    # runs-on: ubuntu-latest
-    # env:
-    #   DATABASE_URL: "postgres://user:password@localhost/dbname"
-    #   SECRET_KEY_BASE: "some-secret-key"
-    # steps:
-    #   - uses: actions/checkout@v3
-    #   - uses: ruby/setup-ruby@v1
-    #     with:
-    #       ruby-version: 3.1.0
-    #   - run: bundle install
-    #   - run: env | grep DATABASE_URL  # Check if it's set
-    #   - run: bundle exec rspec
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -42,7 +30,7 @@ jobs:
         run: bin/rails db:schema:load
       # Add or replace test runners here
       - name: Run tests
-        run: env | grep AIRTABLE_TOKEN
+        # run: env | grep AIRTABLE_TOKEN
         run: bundle exec rspec
 
   lint:
