@@ -14,7 +14,9 @@ module AI
           response_format: { type: 'json_object' },
           messages: [
             { role: 'system', content: 'You are a climbing coach recommending training routes. Respond in JSON format.' },
-            { role: 'user', content: 'Given the following project route and a list of potential training routes, suggest 5 preparatory routes in JSON format and explain your choices briefly.' },
+            { role: 'user',
+              content: 'Given the following project route and a list of potential training routes, suggest 5 preparatory routes in JSON format and explain your choices briefly.'
+            },
             { role: 'user', content: "Project Route (JSON): #{project.attributes.to_json}" },
             { role: 'user', content: "Potential Training Routes (JSON): #{recommended_routes.map(&:attributes).to_json}" }
           ],
