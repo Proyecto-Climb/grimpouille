@@ -1,5 +1,9 @@
 name: "Ruby on Rails CI"
-on: push
+on:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -15,8 +19,6 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
-      # AIRTABLE_TOKEN: airtable_token
-      # AIRTABLE_BASE: airtable_base
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,7 +32,6 @@ jobs:
         run: bin/rails db:schema:load
       # Add or replace test runners here
       - name: Run tests
-        # run: env | grep AIRTABLE_TOKEN
         run: bundle exec rspec
 
   lint:
@@ -46,8 +47,8 @@ jobs:
         run: bundle binstubs bundler-audit brakeman rubocop
       # Add or replace any other lints here
       - name: Security audit dependencies
-        # run: bin/bundler-audit --update
+        run: bin/bundler-audit --update
       - name: Security audit application code
-        # run: bin/brakeman -q -w2
+        run: bin/brakeman -q -w2
       - name: Lint Ruby files
         run: bin/rubocop --parallel
