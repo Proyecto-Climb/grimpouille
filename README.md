@@ -5,5 +5,4 @@ The very start of a fun personal project to help us with our climbing projecting
 With [@Inesalvergne](https://github.com/Inesalvergne)\
 🧗🏻
 
-DB Diagram [here](https://dbdiagram.io/d/Grimpouille-67d9c0dc75d75cc8449278df) made with [dbdiagram.io](https://dbdiagram.io/)\
-DB Docs [here](https://dbdocs.io/steph.qigong/Grimpouille)
+DB Diagram [here](https://dbdiagram.io/d/Grimpouille-67ddb55675d75cc8440392c0)
