@@ -18,7 +18,7 @@ class AirtableRoutes < Airrecord::Table
   HEIGHT = 'fldsaRjWqBexWce8R'
   STYLE = 'fldPc9LhdkJPmFGqT'
 
-  def self.create_record(route_attributes) # rubocop:disable Metrics/MethodLength
+  def self.create_record(route_attributes)
     create(
       CRAG_NAME => route_attributes[:crag_name],
       CRAG_ID => [route_attributes[:id]],

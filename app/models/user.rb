@@ -6,5 +6,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :climbs, foreign_key: :climber_id, dependent: :destroy, inverse_of: :user
+  has_many :climbs, foreign_key: :climber_id, dependent: :destroy, inverse_of: :climber
 end

@@ -1,7 +1,13 @@
 # frozen_string_litteral: true
 
 class Route < ApplicationRecord
+  include GradesConversionService
+
   belongs_to :crag
+  has_one :sector, through: :crag
+  has_one :region, through: :sector
+  has_one :province, through: :region
+  has_one :country, through: :province
   has_many :climbs, dependent: :destroy
   has_many :pitches, dependent: :destroy
 
@@ -20,4 +26,22 @@ class Route < ApplicationRecord
     overhang: 4,
     roof: 5
   }
+
+  after_create :sanitize_grade_and_set_standardized_grade
+  # before_update :sanitize_grade_and_set_standardized_grade, if: :will_save_change_to_grade?
+
+  private
+
+  def sanitize_grade_and_set_standardized_grade
+    case country.grading_system
+    when 'YDS'
+      sanitized_grade = sanitize_yds_grade(grade)
+      self.standardized_grade = YDS[sanitized_grade]
+    when 'EU'
+      # self.standardized_grade = EU_SYSTEM[grade]
+    end
+
+    self.grade = sanitized_grade
+    save!
+  end
 end
