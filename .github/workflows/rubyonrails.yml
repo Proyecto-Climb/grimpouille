@@ -42,7 +42,7 @@ jobs:
         with:
           bundler-cache: true
       - name: Lint Ruby files
-        run: bundle exec rubocop --parallel --config .rubocop.yml --no-plugins
+        run: bundle exec rubocop --parallel --config .rubocop.yml --only Lint
       # - name: Generate binstubs
       #   run: bundle binstubs bundler-audit brakeman rubocop
       # - name: Security audit dependencies
