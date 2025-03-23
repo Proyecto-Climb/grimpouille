@@ -11,28 +11,28 @@
 # Include: app/controllers/**/*
 Discourse/Plugins/CallRequiresPlugin:
   Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/pages_controller.rb'
-    - 'app/controllers/routes_controller.rb'
+    # - 'app/controllers/application_controller.rb'
+    # - 'app/controllers/pages_controller.rb'
+    # - 'app/controllers/routes_controller.rb'
 
 # Offense count: 1
 Discourse/Plugins/UseRequireRelative:
   Exclude:
-    - 'lib/tasks/custom_seed.rake'
+    # - 'lib/tasks/custom_seed.rake'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EmptyLineBetweenMethodDefs, EmptyLineBetweenClassDefs, EmptyLineBetweenModuleDefs, DefLikeMacros, AllowAdjacentOneLineDefs, NumberOfEmptyLines.
 Layout/EmptyLineBetweenDefs:
   Exclude:
-    - 'app/services/scrapers/html_scraper.rb'
+    # - 'app/services/scrapers/html_scraper.rb'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 Layout/EmptyLines:
   Exclude:
-    - 'app/services/ai/open_ai_service.rb'
-    - 'app/services/scrapers/html_scraper.rb'
+    # - 'app/services/ai/open_ai_service.rb'
+    # - 'app/services/scrapers/html_scraper.rb'
 
 # Offense count: 1
 # This cop supports safe autocorrection (--autocorrect).
@@ -40,17 +40,17 @@ Layout/EmptyLines:
 # SupportedStyles: aligned, indented, indented_relative_to_receiver
 Layout/MultilineMethodCallIndentation:
   Exclude:
-    - 'app/controllers/routes_controller.rb'
+    # - 'app/controllers/routes_controller.rb'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 Lint/RedundantCopDisableDirective:
   Exclude:
-    - 'app/services/ai/open_ai_service.rb'
-    - 'lib/tasks/custom_seed.rake'
+    # - 'app/services/ai/open_ai_service.rb'
+    # - 'lib/tasks/custom_seed.rake'
 
 # Offense count: 2
 Security/Open:
   Exclude:
-    - 'app/services/scrapers/siurana_area_scraper.rb'
-    - 'app/services/scrapers/skaha_area_scraper.rb'
+    # - 'app/services/scrapers/siurana_area_scraper.rb'
+    # - 'app/services/scrapers/skaha_area_scraper.rb'
