@@ -71,6 +71,7 @@ group :development, :test do
   gem 'reek'
   gem 'rspec-rails', '~> 7.0.0'
   gem 'rubocop-discourse'
+  gem 'rubocop-performance'
   gem 'rubocop-rails', require: false
 end
 
