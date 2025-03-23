@@ -3,4 +3,6 @@
 require 'open-uri'
 require 'nokogiri'
 
-class MountainProjectScraperService < BaseService; end
+module Scrapers
+  class MountainProjectScraperService < BaseService; end
+end
