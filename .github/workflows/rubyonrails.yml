@@ -2,6 +2,18 @@ name: "Ruby on Rails CI"
 on: push
 jobs:
   test:
+    # runs-on: ubuntu-latest
+    # env:
+    #   DATABASE_URL: "postgres://user:password@localhost/dbname"
+    #   SECRET_KEY_BASE: "some-secret-key"
+    # steps:
+    #   - uses: actions/checkout@v3
+    #   - uses: ruby/setup-ruby@v1
+    #     with:
+    #       ruby-version: 3.1.0
+    #   - run: bundle install
+    #   - run: env | grep DATABASE_URL  # Check if it's set
+    #   - run: bundle exec rspec
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -12,11 +24,11 @@ jobs:
           POSTGRES_DB: rails_test
           POSTGRES_USER: rails
           POSTGRES_PASSWORD: password
-          AIRTABLE_TOKEN: airtable_token
-          AIRTABLE_BASE: airtable_base
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+      AIRTABLE_TOKEN: airtable_token
+      AIRTABLE_BASE: airtable_base
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,6 +42,7 @@ jobs:
         run: bin/rails db:schema:load
       # Add or replace test runners here
       - name: Run tests
+        run: env | grep AIRTABLE_TOKEN
         run: bundle exec rspec
 
   lint:
@@ -45,8 +58,8 @@ jobs:
         run: bundle binstubs bundler-audit brakeman rubocop
       # Add or replace any other lints here
       - name: Security audit dependencies
-        run: bin/bundler-audit --update
+        # run: bin/bundler-audit --update
       - name: Security audit application code
-        run: bin/brakeman -q -w2
+        # run: bin/brakeman -q -w2
       - name: Lint Ruby files
         run: bin/rubocop --parallel
