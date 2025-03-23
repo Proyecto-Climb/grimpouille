@@ -42,6 +42,7 @@ jobs:
         with:
           bundler-cache: true
       - name: Lint Ruby files
+        run: rubocop -a --only Migration/DepartmentName
         run: bundle exec rubocop --parallel --config .rubocop.yml --only Lint
       # - name: Generate binstubs
       #   run: bundle binstubs bundler-audit brakeman rubocop
