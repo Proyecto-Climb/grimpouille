@@ -59,6 +59,7 @@ gem 'simple_form', github: 'heartcombo/simple_form'
 gem 'sassc-rails'
 
 # Custom
+gem 'bundler-audit'
 gem 'foreman'
 
 group :development, :test do
@@ -68,6 +69,9 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'jsonl_reader_writer'
   gem 'reek'
+  gem 'rspec-rails', '~> 7.0.0'
+  gem 'rubocop-discourse'
+  gem 'rubocop-performance'
   gem 'rubocop-rails', require: false
 end
 
