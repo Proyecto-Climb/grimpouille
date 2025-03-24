@@ -24,10 +24,10 @@ jobs:
         run: bundle install --jobs 4 --retry 3
 
       - name: Set up database
-        run: bin/rails db:create db:migrate RAILS_ENV=production
+        run: bin/rails db:create db:migrate # RAILS_ENV=production
 
       - name: Precompile assets
-        run: bin/rails assets:precompile RAILS_ENV=production
+        run: bin/rails assets:precompile # RAILS_ENV=production
 
       - name: Check if Rails app boots
         run: bin/rails runner "puts 'Rails app boots successfully!'"
