@@ -28,3 +28,9 @@ jobs:
         run: bin/rails db:schema:load
       - name: Run tests
         run: bundle exec rspec
+
+      - name: Trigger Rubocop Workflow
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          # token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: rubocop_app

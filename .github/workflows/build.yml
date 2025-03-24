@@ -1,6 +1,8 @@
-name: Build Rails App
+name: "Ruby on Rails CI: Build"
 
-on: push
+on:
+  repository_dispatch:
+    types: [build_app]
 
 jobs:
   build:
