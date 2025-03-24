@@ -17,7 +17,7 @@ jobs:
       - name: Trigger Build Workflow
         uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.GIT_HUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           event-type: build_app
       # - name: Migrate stuff
       #   run: bundle exec rubocop -a --only Migration/DepartmentName
