@@ -6,6 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
+      SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
       AIRTABLE_TOKEN: airtable_token
       OPENAI_ACCESS_TOKEN: open_ai_token
 
