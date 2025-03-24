@@ -3,7 +3,7 @@ name: Build Rails App
 on: push
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
