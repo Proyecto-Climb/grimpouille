@@ -1,0 +1,16 @@
+name: Deploy Rails App
+
+on:
+  repository_dispatch:
+    types: [deploy_app]  # Triggered by the build workflow
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to Production
+        run: scalingo deploy

@@ -1,0 +1,35 @@
+name: Build Rails App
+
+on: push
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+
+      - name: Set up database
+        run: bin/rails db:create db:migrate RAILS_ENV=production
+
+      - name: Precompile assets
+        run: bin/rails assets:precompile RAILS_ENV=production
+
+      - name: Check if Rails app boots
+        run: bin/rails runner "puts 'Rails app boots successfully!'"
+
+      # - name: Trigger Deploy Workflow
+      #   uses: peter-evans/repository-dispatch@v3
+      #   with:
+      #     # token: ${{ secrets.GITHUB_TOKEN }}
+      #     event-type: deploy_app
