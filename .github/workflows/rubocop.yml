@@ -1,6 +1,6 @@
 name: "Ruby on Rails CI: Rubocop"
 on:
-  repository_dispatch:
+  workflow_dispatch:
     types: [rubocop_app]  # Triggered by the build workflow
 jobs:
   rubocop:
