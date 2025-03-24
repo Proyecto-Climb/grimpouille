@@ -5,7 +5,19 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+    postgres:
+      image: postgres:11-alpine
+      ports:
+        - "5432:5432"
+      env:
+        POSTGRES_DB: rails_test
+        POSTGRES_USER: rails
+        POSTGRES_PASSWORD: password
+
     env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
       SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
       AIRTABLE_TOKEN: airtable_token
       OPENAI_ACCESS_TOKEN: open_ai_token
