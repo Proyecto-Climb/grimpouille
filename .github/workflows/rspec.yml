@@ -1,4 +1,4 @@
-name: "Ruby on Rails CI: RSpec & Rubocop"
+name: "Ruby on Rails CI: RSpec"
 on: push
 jobs:
   rspec-tests:

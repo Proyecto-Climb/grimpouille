@@ -1,4 +1,4 @@
-name: "Rubocop"
+name: "Ruby on Rails CI: Rubocop"
 on: push
 jobs:
   rubocop:
