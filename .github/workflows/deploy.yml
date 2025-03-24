@@ -1,6 +1,7 @@
 name: Deploy Rails App
 
 on:
+  workflow_dispatch:
   repository_dispatch:
     types: [deploy_app]  # Triggered by the build workflow
 

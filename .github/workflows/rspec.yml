@@ -1,5 +1,7 @@
 name: "Ruby on Rails CI: RSpec"
-on: push
+on:
+  push:
+  workflow_dispatch:
 jobs:
   rspec-tests:
     runs-on: ubuntu-latest

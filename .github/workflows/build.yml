@@ -1,6 +1,7 @@
 name: "Ruby on Rails CI: Build"
 
 on:
+  workflow_dispatch:
   repository_dispatch:
     types: [build_app]
 
