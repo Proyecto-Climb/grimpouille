@@ -76,7 +76,6 @@ end
 gem 'jsonl_reader_writer'
 
 group :development do
-  gem 'rails_magic_renamer'
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
 
