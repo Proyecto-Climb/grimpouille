@@ -244,7 +244,6 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
-    rails_magic_renamer (2.0.0.pre.alpha)
     railties (7.0.8.1)
       actionpack (= 7.0.8.1)
       activesupport (= 7.0.8.1)
@@ -394,7 +393,6 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8, >= 7.0.8.1)
-  rails_magic_renamer
   reek
   rspec-rails (~> 7.0.0)
   rubocop-discourse
