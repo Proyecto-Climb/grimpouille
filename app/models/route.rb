@@ -24,7 +24,8 @@ class Route < ApplicationRecord
     vertical: 2,
     slight_overhang: 3,
     overhang: 4,
-    roof: 5
+    roof: 5,
+    unknown_angle: 6
   }
 
   after_create :sanitize_grade_and_set_standardized_grade

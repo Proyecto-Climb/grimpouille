@@ -9,7 +9,8 @@ class Admin::DashboardController < ApplicationController
   end
 
   def edit
-    @angles = Route.angles.map { |str, int| [int, str] }
+    @styles = Route.styles.keys
+    @angles = Route.angles.keys
   end
 
   def update
