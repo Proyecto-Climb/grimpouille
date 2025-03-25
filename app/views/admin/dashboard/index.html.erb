@@ -2,9 +2,9 @@
   <h1>Dashboard</h1>
 
   <ul>
-    <% @routes.each do |route| %>
-      <li><%= route.id %> <%= link_to route.name, admin_route_path(route) %></li>
-      <li><%= link_to 'Edit', admin_edit_route_path(route) %></li>
+    <% @climbing_routes.each do |climbing_route| %>
+      <li><%= climbing_route.id %> <%= link_to climbing_route.name, admin_climbing_route_path(climbing_route) %></li>
+      <li><%= link_to 'Edit', admin_edit_climbing_route_path(climbing_route) %></li>
     <% end %>
   </ul>
 </div>

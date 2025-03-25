@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RoutesController < ApplicationController
+class ClimbingRoutesController < ApplicationController
   include AI::OpenAIService
 
   skip_before_action :authenticate_user!
@@ -9,10 +9,10 @@ class RoutesController < ApplicationController
   def select_project; end
 
   def recommendations
-    @project = Route.find_by(id: params[:route_id])
+    @project = ClimbingRoute.find_by(id: params[:route_id])
 
     if @project
-      training_routes = Route.where(
+      training_routes = ClimbingRoute.where(
                                     standardized_grade: ...@project.standardized_grade,
                                     style: @project.style
                                     )
@@ -34,7 +34,7 @@ class RoutesController < ApplicationController
   private
 
   def defined_routes
-    @defined_routes ||= Route.order(name: :asc)
+    @defined_routes ||= ClimbingRoute.order(name: :asc)
   end
 
   def generate_schedule(routes)
