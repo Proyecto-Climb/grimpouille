@@ -1,11 +1,11 @@
 <div class="container">
-  <h1><%= @route.name %></h1>
-  <h3>Crag: <%= @route.crag.name %></h3>
+  <h1><%= @climbing_route.name %></h1>
+  <h3>Crag: <%= @climbing_route.crag.name %></h3>
   <ul>
-    <% @route.attributes.each do |attr| %>
+    <% @climbing_route.attributes.each do |attr| %>
       <li><%= attr.first %>: <%= attr.last %></li>
     <% end %>
   </ul>
   <%= link_to 'Dashboard', admin_path %>
-  <%= link_to 'Edit', admin_edit_route_path(@route) %>
+  <%= link_to 'Edit', admin_edit_climbing_route_path(@climbing_route) %>
 </div>

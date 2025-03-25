@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe Route, type: :model do
+RSpec.describe ClimbingRoute, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

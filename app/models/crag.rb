@@ -2,5 +2,5 @@
 
 class Crag < ApplicationRecord
   belongs_to :sector
-  has_many :routes, dependent: :destroy
+  has_many :climbing_routes, dependent: :destroy
 end

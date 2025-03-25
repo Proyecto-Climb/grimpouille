@@ -5,7 +5,7 @@ unless Rails.env.production?
   Climb.destroy_all
   User.destroy_all
   Pitch.destroy_all
-  Route.destroy_all
+  ClimbingRoute.destroy_all
   Crag.destroy_all
   Sector.destroy_all
   Region.destroy_all
@@ -20,7 +20,7 @@ steph = User.create!(first_name: 'Stephane', last_name: 'Lafontaine', email: 's@
 # siurana = Sector.create!(name: 'Siurana', region: catalunya)
 # herbolari = Crag.create!(name: "L'Herbolari", sector: siurana)
 
-# brain_storming = Route.create!(
+# brain_storming = ClimbingRoute.create!(
 #   name: 'Brain Storming',
 #   grade: '6b',
 #   style: 1,
@@ -72,7 +72,7 @@ end
 AirtableSeed.all.each do |route_data|
   ActiveRecord::Base.transaction do
     puts "Creating #{route_data['Route name']} route"
-    route = Route.create!(
+    climbing_route = ClimbingRoute.create!(
       name: route_data['Route name'],
       grade: route_data['Grade'],
       style: AirtableSeed.format_style(route_data['Style']),
@@ -84,13 +84,13 @@ AirtableSeed.all.each do |route_data|
 
     pitch = Pitch.new(
       position: 1,
-      length: route.height,
-      pitch_grade: route.grade,
+      length: climbing_route.height,
+      pitch_grade: climbing_route.grade,
       angle: 90,
       bolts: route_data['Bolts']
     )
 
-    pitch.route = route
+    pitch.climbing_route = climbing_route
     pitch.save!
   end
 end

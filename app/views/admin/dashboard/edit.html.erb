@@ -1,9 +1,9 @@
 <div class="container">
-  <h1>Edit <%= @route.name %></h1>
-  <h3>Crag: <%= @route.crag.name %></h3>
-  <p>Standardized grade: <%= @route.standardized_grade %></p>
+  <h1>Edit <%= @climbing_route.name %></h1>
+  <h3>Crag: <%= @climbing_route.crag.name %></h3>
+  <p>Standardized grade: <%= @climbing_route.standardized_grade %></p>
 
-  <%= simple_form_for(@route, url: admin_update_route_path(@route)) do |f| %>
+  <%= simple_form_for(@climbing_route, url: admin_update_climbing_route_path(@climbing_route)) do |f| %>
     <%= f.input :name %>
     <%= f.input :grade %>
     <%= f.input :style, as: :select, collection: @styles, include_blank: false %>
@@ -14,5 +14,5 @@
     <%= f.submit %>
   <% end %>
   <%= link_to 'Dashboard', admin_path %>
-  <%= link_to @route.name, admin_route_path(@route) %>
+  <%= link_to @climbing_route.name, admin_climbing_route_path(@climbing_route) %>
 </div>

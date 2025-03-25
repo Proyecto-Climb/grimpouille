@@ -16,7 +16,7 @@ class JsonlService
     end
 
     def format_data
-      Route.includes(:pitches).map do |route|
+      ClimbingRoute.includes(:pitches).map do |route|
         pitch = route.pitches.first
         {
           sector: route.crag.sector.name,

@@ -3,5 +3,5 @@ class Province < ApplicationRecord
   has_many :regions, dependent: :destroy
   has_many :crags, through: :regions
   has_many :sectors, through: :crags
-  has_many :routes, through: :sectors
+  has_many :climbing_routes, through: :sectors
 end

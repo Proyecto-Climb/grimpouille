@@ -24,14 +24,29 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_24_192146) do
     t.index ["climb_id"], name: "index_attempts_on_climb_id"
   end
 
+  create_table "climbing_routes", force: :cascade do |t|
+    t.string "name"
+    t.string "grade"
+    t.integer "style"
+    t.bigint "crag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "stars", default: 0
+    t.string "url"
+    t.integer "height", default: 0
+    t.integer "standardized_grade"
+    t.integer "angle", default: 6
+    t.index ["crag_id"], name: "index_climbing_routes_on_crag_id"
+  end
+
   create_table "climbs", force: :cascade do |t|
     t.integer "status"
-    t.bigint "route_id", null: false
+    t.bigint "climbing_route_id", null: false
     t.bigint "climber_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["climber_id"], name: "index_climbs_on_climber_id"
-    t.index ["route_id"], name: "index_climbs_on_route_id"
+    t.index ["climbing_route_id"], name: "index_climbs_on_climbing_route_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -55,10 +70,10 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_24_192146) do
     t.string "pitch_grade"
     t.integer "bolts"
     t.integer "angle"
-    t.bigint "route_id", null: false
+    t.bigint "climbing_route_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["route_id"], name: "index_pitches_on_route_id"
+    t.index ["climbing_route_id"], name: "index_pitches_on_climbing_route_id"
   end
 
   create_table "provinces", force: :cascade do |t|
@@ -75,21 +90,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_24_192146) do
     t.datetime "updated_at", null: false
     t.bigint "province_id", null: false
     t.index ["province_id"], name: "index_regions_on_province_id"
-  end
-
-  create_table "routes", force: :cascade do |t|
-    t.string "name"
-    t.string "grade"
-    t.integer "style"
-    t.bigint "crag_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "stars", default: 0
-    t.string "url"
-    t.integer "height", default: 0
-    t.integer "standardized_grade"
-    t.integer "angle", default: 6
-    t.index ["crag_id"], name: "index_routes_on_crag_id"
   end
 
   create_table "sectors", force: :cascade do |t|
@@ -115,12 +115,12 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_24_192146) do
   end
 
   add_foreign_key "attempts", "climbs"
-  add_foreign_key "climbs", "routes"
+  add_foreign_key "climbing_routes", "crags"
+  add_foreign_key "climbs", "climbing_routes"
   add_foreign_key "climbs", "users", column: "climber_id"
   add_foreign_key "crags", "sectors"
-  add_foreign_key "pitches", "routes"
+  add_foreign_key "pitches", "climbing_routes"
   add_foreign_key "provinces", "countries"
   add_foreign_key "regions", "provinces"
-  add_foreign_key "routes", "crags"
   add_foreign_key "sectors", "regions"
 end

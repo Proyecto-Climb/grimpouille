@@ -1,21 +1,21 @@
 class Admin::DashboardController < ApplicationController
-  before_action :find_route, only: [ :show, :edit, :update ]
+  before_action :find_climbing_route, only: [ :show, :edit, :update ]
 
   def index
-    @routes = Route.all
+    @climbing_routes = ClimbingRoute.all
   end
 
   def show
   end
 
   def edit
-    @styles = Route.styles.keys
-    @angles = Route.angles.keys
+    @styles = ClimbingRoute.styles.keys
+    @angles = ClimbingRoute.angles.keys
   end
 
   def update
-    if @route.update(route_params)
-      redirect_to admin_route_path(@route)
+    if @climbing_route.update(route_params)
+      redirect_to admin_route_path(@climbing_route)
     else
       render :edit
     end
@@ -23,11 +23,11 @@ class Admin::DashboardController < ApplicationController
 
   private
 
-  def find_route
-    @route = Route.find(params[:id])
+  def find_climbing_route
+    @climbing_route = ClimbingRoute.find(params[:id])
   end
 
   def route_params
-    params.require(:route).permit(:name, :grade, :style, :stars, :height, :angle)
+    params.require(:climbing_route).permit(:name, :grade, :style, :stars, :height, :angle)
   end
 end

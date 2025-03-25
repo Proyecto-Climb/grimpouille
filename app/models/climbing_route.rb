@@ -1,6 +1,6 @@
 # frozen_string_litteral: true
 
-class Route < ApplicationRecord
+class ClimbingRoute < ApplicationRecord
   include GradesConversionService
 
   belongs_to :crag
