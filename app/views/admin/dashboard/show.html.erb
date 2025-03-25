@@ -1,0 +1,11 @@
+<div class="container">
+  <h1><%= @route.name %></h1>
+  <h3>Crag: <%= @route.crag.name %></h3>
+  <ul>
+    <% @route.attributes.each do |attr| %>
+      <li><%= attr.first %>: <%= attr.last %></li>
+    <% end %>
+  </ul>
+  <%= link_to 'Dashboard', admin_path %>
+  <%= link_to 'Edit', admin_edit_route_path(@route) %>
+</div>

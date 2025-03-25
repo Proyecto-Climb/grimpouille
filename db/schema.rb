@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_03_19_192616) do
+ActiveRecord::Schema[7.0].define(version: 2025_03_24_192146) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,6 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_19_192616) do
     t.string "url"
     t.integer "height", default: 0
     t.integer "standardized_grade"
+    t.integer "angle", default: 6
     t.index ["crag_id"], name: "index_routes_on_crag_id"
   end
 

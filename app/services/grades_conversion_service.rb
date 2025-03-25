@@ -98,7 +98,7 @@ module GradesConversionService
       elsif match_data[:double_digit_in_between_numbers]
         grade.gsub(/\d{2}[a-d]\//, '')
       elsif match_data[:double_digit_no_letter]
-        "#{match_data[:double_digit_no_letter]} 'c'"
+        "#{match_data[:double_digit_no_letter]}c"
       elsif match_data[:double_digit_plus]
         grade.gsub('+', 'd')
       elsif match_data[:double_digit_minus]

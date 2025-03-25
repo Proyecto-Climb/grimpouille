@@ -14,6 +14,7 @@ Discourse/Plugins/CallRequiresPlugin:
     - 'app/controllers/application_controller.rb'
     - 'app/controllers/pages_controller.rb'
     - 'app/controllers/routes_controller.rb'
+    - 'app/controllers/admin/dashboard_controller.rb'
 
 # Offense count: 1
 Discourse/Plugins/UseRequireRelative:

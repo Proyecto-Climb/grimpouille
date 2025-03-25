@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>Edit <%= @route.name %></h1>
+  <h3>Crag: <%= @route.crag.name %></h3>
+  <p>Standardized grade: <%= @route.standardized_grade %></p>
+
+  <%= simple_form_for(@route, url: admin_update_route_path(@route)) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :grade %>
+    <%= f.input :style, as: :select, collection: @styles, include_blank: false %>
+    <%= f.input :stars %>
+    <%= f.input :height %>
+    <%= f.input :angle, as: :select, collection: @angles, include_blank: false  %>
+
+    <%= f.submit %>
+  <% end %>
+  <%= link_to 'Dashboard', admin_path %>
+  <%= link_to @route.name, admin_route_path(@route) %>
+</div>

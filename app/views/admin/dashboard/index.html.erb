@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Dashboard</h1>
+
+  <ul>
+    <% @routes.each do |route| %>
+      <li><%= route.id %> <%= link_to route.name, admin_route_path(route) %></li>
+      <li><%= link_to 'Edit', admin_edit_route_path(route) %></li>
+    <% end %>
+  </ul>
+</div>
