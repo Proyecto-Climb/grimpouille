@@ -13,6 +13,8 @@ jobs:
   rubocop:
     runs-on: ubuntu-latest
     steps:
+      - name: Force clean repo state
+        run: git clean -fdX
       - name: Remove old cache
         run: rm -rf ~/.rubocop_cache
       - name: Checkout repository
