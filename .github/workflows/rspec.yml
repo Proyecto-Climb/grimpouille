@@ -36,3 +36,33 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           event-type: rubocop_app
+
+# name: "Ruby on Rails CI: Rubocop"
+# on:
+#   workflow_dispatch:
+#   repository_dispatch:
+#     types: [rubocop_app]  # Triggered by the build workflow
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Force clean repo state
+        run: git clean -fdX
+      - name: Remove old cache
+        run: rm -rf ~/.rubocop_cache
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@78c01b705fd9d5ad960d432d3a0cfa341d50e410 # v1.179.1
+        with:
+          bundler-cache: true
+      - name: Lint Ruby files
+        run: bundle exec rubocop --parallel --config .rubocop.yml
+      - name: Trigger Build Workflow
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: build_app
