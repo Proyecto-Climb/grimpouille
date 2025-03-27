@@ -46,6 +46,8 @@ jobs:
   rubocop:
     runs-on: ubuntu-latest
     steps:
+      - name: Debug Git repo
+        run: ls -la
       - name: Force clean repo state
         run: git clean -fdX
       - name: Remove old cache
