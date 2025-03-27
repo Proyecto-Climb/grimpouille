@@ -46,16 +46,16 @@ jobs:
   rubocop:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Debug Git repo
         run: ls -la
       - name: Force clean repo state
         run: git clean -fdX
       - name: Remove old cache
         run: rm -rf ~/.rubocop_cache
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Remove orphaned files
         run: git ls-files --deleted -z | xargs -0 git rm --ignore-unmatch
       - name: Install Ruby and gems
