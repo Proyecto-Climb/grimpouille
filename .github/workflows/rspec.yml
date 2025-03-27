@@ -37,12 +37,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           event-type: rubocop_app
 
-# name: "Ruby on Rails CI: Rubocop"
-# on:
-#   workflow_dispatch:
-#   repository_dispatch:
-#     types: [rubocop_app]  # Triggered by the build workflow
-
   rubocop:
     runs-on: ubuntu-latest
     steps:
@@ -50,8 +44,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Debug Git repo
-        run: ls -la
       - name: Force clean repo state
         run: git clean -fdX
       - name: Remove old cache
