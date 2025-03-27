@@ -46,6 +46,8 @@ jobs:
   rubocop:
     runs-on: ubuntu-latest
     steps:
+      - name: Remove orphaned files
+        run: git ls-files --deleted -z | xargs -0 git rm --ignore-unmatch
       - name: Force clean repo state
         run: git clean -fdX
       - name: Remove old cache
