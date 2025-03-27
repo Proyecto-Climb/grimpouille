@@ -13,6 +13,8 @@ jobs:
   rubocop:
     runs-on: ubuntu-latest
     steps:
+      - name: Remove old cache
+        run: rm -rf ~/.rubocop_cache
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
