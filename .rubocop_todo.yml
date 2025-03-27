@@ -27,7 +27,3 @@ Security/Open:
   Exclude:
     - 'app/services/scrapers/siurana_area_scraper.rb'
     - 'app/services/scrapers/skaha_area_scraper.rb'
-
-Layout/MultilineMethodCallIndentation:
-  Exclude:
-    - 'app/controllers/climbing_routes_controller.rb'
