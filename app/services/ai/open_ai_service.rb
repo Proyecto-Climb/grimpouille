@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
-
 module AI
   module OpenAIService
-    # rubocop:disable Layout/LineLength
-
     def enhance_response(project, recommended_routes)
       client = OpenAI::Client.new
 
@@ -27,6 +24,4 @@ module AI
       JSON.parse(response['choices'].first['message']['content'])['preparatory_routes']
     end
   end
-
-  # rubocop:enable Layout/LineLength
 end

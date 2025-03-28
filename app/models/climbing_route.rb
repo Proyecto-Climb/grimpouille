@@ -8,6 +8,7 @@ class ClimbingRoute < ApplicationRecord
   has_one :region, through: :sector
   has_one :province, through: :region
   has_one :country, through: :province
+
   has_many :climbs, dependent: :destroy
   has_many :pitches, dependent: :destroy
 
@@ -27,6 +28,8 @@ class ClimbingRoute < ApplicationRecord
     roof: 5,
     unknown_angle: 6
   }
+
+  scope :by_sector, -> (sector) { includes(crag: :sector).where(crags: { sector: sector }) }
 
   after_create :sanitize_grade_and_set_standardized_grade
   before_commit :sanitize_grade_and_set_standardized_grade, on: :update, if: -> { :will_save_change_to_grade? }

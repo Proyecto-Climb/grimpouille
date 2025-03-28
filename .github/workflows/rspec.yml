@@ -36,3 +36,36 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           event-type: rubocop_app
+
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Force clean repo state
+        run: git clean -fdX
+      - name: Remove old cache
+        run: rm -rf ~/.rubocop_cache
+      - name: Remove orphaned files
+        run: |
+          deleted_files=$(git ls-files --deleted)
+          if [[ -n "$deleted_files" ]]; then
+            echo "Removing deleted files..."
+            echo "$deleted_files" | xargs git rm --ignore-unmatch
+          else
+            echo "No deleted files to remove."
+          fi
+
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@78c01b705fd9d5ad960d432d3a0cfa341d50e410 # v1.179.1
+        with:
+          bundler-cache: true
+      - name: Lint Ruby files
+        run: bundle exec rubocop --parallel --config .rubocop.yml
+      - name: Trigger Build Workflow
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          event-type: build_app

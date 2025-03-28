@@ -41,3 +41,5 @@
 !/db/scraped_data/crags_data/
 /db/scraped_data/routes_data/*/
 !/db/scraped_data/routes_data/
+
+/bruno/*

@@ -37,7 +37,6 @@ module Scrapers
         { sector_name => routes_data }
       end
 
-
       def prout_prout
         # folderpath = 'db/scraped_data/skaha_data/skaha_html_files/*.html'
         folderpath = 'db/scraped_data/html_files/siurana_html_files/*.html'
