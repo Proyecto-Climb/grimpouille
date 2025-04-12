@@ -15,6 +15,7 @@ Discourse/Plugins/CallRequiresPlugin:
     - 'app/controllers/api/v1/climbing_routes_controller.rb'
     - 'app/controllers/application_controller.rb'
     - 'app/controllers/pages_controller.rb'
+    - 'app/controllers/climbing_routes_controller.rb'
 
 # Offense count: 1
 Discourse/Plugins/UseRequireRelative:

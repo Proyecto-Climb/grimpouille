@@ -14,7 +14,7 @@ class ClimbingRoutesController < ApplicationController
                                     standardized_grade: ...@project.standardized_grade,
                                     style: @project.style
                                     )
-                             .order("RANDOM()")
+        .order("RANDOM()")
 
       pp recommended_routes = training_routes.limit(5)
 
