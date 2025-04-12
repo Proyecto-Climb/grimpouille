@@ -14,7 +14,7 @@ unless Rails.env.production?
 end
 
 ines = User.create!(first_name: 'Ines', last_name: 'Alvergne', email: 'i@i.i', password: 111111, admin: true, developer: true)
-steph = User.create!(first_name: 'Stephane', last_name: 'Lafontaine', email: 's@s.s', password: 111111, admin: true, developer: true))
+steph = User.create!(first_name: 'Stephane', last_name: 'Lafontaine', email: 's@s.s', password: 111111, admin: true, developer: true)
 
 # catalunya = Region.create!(name: 'Catalunya')
 # siurana = Sector.create!(name: 'Siurana', region: catalunya)
