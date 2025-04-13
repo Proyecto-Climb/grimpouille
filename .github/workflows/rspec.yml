@@ -34,7 +34,7 @@ jobs:
       - name: Trigger Rubocop Workflow
         uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
           event-type: rubocop_app
 
   rubocop:
@@ -67,5 +67,5 @@ jobs:
       - name: Trigger Build Workflow
         uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
           event-type: build_app
