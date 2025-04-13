@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'routes#select_project'
-
-  get '/recommendations', to: 'routes#recommendations'
+  root to: 'admin/dashboard#index'
 
   namespace :admin do
     get '/dashboard', to: 'dashboard#index', as: '/'

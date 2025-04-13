@@ -15,7 +15,7 @@ class Admin::DashboardController < ApplicationController
 
   def update
     if @climbing_route.update(route_params)
-      redirect_to admin_route_path(@climbing_route)
+      redirect_to admin_climbing_route_path(@climbing_route)
     else
       render :edit
     end
