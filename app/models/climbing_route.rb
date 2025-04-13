@@ -46,6 +46,7 @@ class ClimbingRoute < ApplicationRecord
       sanitized_grade = sanitize_yds_grade(grade)
       self.standardized_grade = YDS[sanitized_grade]
     when 'EU'
+      # TODO
       # self.standardized_grade = EU_SYSTEM[grade]
     end
 
