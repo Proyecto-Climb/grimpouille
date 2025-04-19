@@ -38,6 +38,10 @@ class ClimbingRoute < ApplicationRecord
     "#{name} | #{grade}"
   end
 
+  def pitch
+    pitches.first
+  end
+
   private
 
   def sanitize_grade_and_set_standardized_grade
@@ -46,7 +50,8 @@ class ClimbingRoute < ApplicationRecord
       sanitized_grade = sanitize_yds_grade(grade)
       self.standardized_grade = YDS[sanitized_grade]
     when 'EU'
-      # self.standardized_grade = EU_SYSTEM[grade]
+      # TODO
+      sanitized_grade = grade
     end
 
     self.grade = sanitized_grade
