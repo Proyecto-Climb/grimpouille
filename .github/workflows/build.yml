@@ -39,14 +39,15 @@ jobs:
         run: bundle install --jobs 4 --retry 3
 
       - name: Set up database
-        run: bin/rails db:create db:migrate # RAILS_ENV=production
+        run: bin/rails db:create db:migrate
 
       - name: Precompile assets
-        run: bin/rails assets:precompile # RAILS_ENV=production
+        run: bin/rails assets:precompile
 
       - name: Check if Rails app boots
         run: bin/rails runner "puts 'Rails app boots successfully!'"
 
+      # TODO eventually, automatic deploy
       # - name: Trigger Deploy Workflow
       #   uses: peter-evans/repository-dispatch@v3
       #   with:
