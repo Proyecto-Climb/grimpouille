@@ -18,7 +18,7 @@ module GradesConversionService
   end
 
   def sanitize_yds_grade(grade)
-    match_data = GradesConversionService::YDS_REGEX.match(grade)
+    match_data = YDS_REGEX.match(grade)
 
     if match_data
       if match_data[:double_digit_in_between_letters]
