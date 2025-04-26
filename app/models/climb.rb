@@ -13,5 +13,5 @@ class Climb < ApplicationRecord
     project: 4,
     retreated: 5,
     abandoned: 6
-  }
+  }, validate: true
 end
