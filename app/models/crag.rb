@@ -3,4 +3,6 @@
 class Crag < ApplicationRecord
   belongs_to :sector
   has_many :climbing_routes, dependent: :destroy
+
+  validates :name, presence: true
 end

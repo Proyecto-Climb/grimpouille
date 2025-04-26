@@ -3,6 +3,8 @@
 class Attempt < ApplicationRecord
   belongs_to :climb
 
+  validates :date, :status, presence: true
+
   enum :status, {
     onsight: 1,
     flash: 2,
@@ -10,5 +12,5 @@ class Attempt < ApplicationRecord
     project: 4,
     retreated: 5,
     abandoned: 6
-  }
+  }, validate: true
 end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module GradesConversionService
+  GRADING_SYSTEMS = ['YDS', 'EU']
+
   YDS = {
     '5.0' => 0,
     '5.1' => 1,

@@ -3,4 +3,6 @@
 class Sector < ApplicationRecord
   belongs_to :region
   has_many :crags, dependent: :destroy
+
+  validates :name, presence: true
 end
