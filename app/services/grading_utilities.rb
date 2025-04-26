@@ -80,14 +80,15 @@ module GradingUtilities
   }
 
   YDS_REGEX = /
-    \A(?<double_digit_in_between_letters>5\.\d{2}[a-d]\/[a-d])|
-    (?<double_digit_in_between_numbers>5\.\d{2}[a-d]\/\d{2}[a-d])|
-    (?<clean_double_digit>5\.\d{2}[a-d])|
-    (?<double_digit_no_letter>5\.\d{2})|
-    (?<double_digit_plus>5\.\d{2}\+)|
-    (?<double_digit_minus>5\.\d{2}-)|
-    (?<single_digit_plus>5\.\d\+)|
-    (?<single_digit_minus>5\.\d-)|
-    (?<clean_single_digit>5\.\d{1})\z
+    \A
+    (?<clean_double_digit>5\.\d{2}[a-d])\z|
+    (?<double_digit_no_letter>5\.\d{2})\z|
+    (?<double_digit_minus>5\.\d{2}-)\z|
+    (?<double_digit_plus>5\.\d{2}\+)\z|
+    (?<double_digit_in_between_letters>5\.\d{2}[a-d]\/[a-d])\z|
+    (?<double_digit_in_between_numbers>5\.\d{2}[a-d]\/\d{2}[a-d])\z|
+    (?<clean_single_digit>5\.\d{1})\z|
+    (?<single_digit_minus>5\.\d-)\z|
+    (?<single_digit_plus>5\.\d\+)\z
   /ix
 end

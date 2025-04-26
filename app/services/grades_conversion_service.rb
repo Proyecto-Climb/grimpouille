@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module GradesConversionService
-  include GradingsUtils
+  include GradingUtilities
 
   def sanitize_grade_and_set_standardized_grade
     case country.grading_system
