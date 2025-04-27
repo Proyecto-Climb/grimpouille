@@ -2,7 +2,7 @@ Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/ra
 
 🧗🏻\
 The very start of a fun personal project to help us with our climbing projecting (for those to whom this means anything 😄)\
-With [@Inesalvergne](https://github.com/Inesalvergne)\
+With [@Inesalvergne](https://github.com/Inesalvergne)
 
 More details to come...
 
