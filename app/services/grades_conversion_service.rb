@@ -4,7 +4,7 @@ module GradesConversionService
   include GradingUtilities
 
   def sanitize_grade_and_set_standardized_grade
-    case country.grading_system
+    case grading_system
     when 'YDS'
       sanitized_grade = sanitize_yds_grade(grade)
       self.standardized_grade = YDS[sanitized_grade]

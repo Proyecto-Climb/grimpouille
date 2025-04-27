@@ -44,4 +44,8 @@ class ClimbingRoute < ApplicationRecord
   def pitch
     pitches.first
   end
+
+  def grading_system
+    country.grading_system
+  end
 end

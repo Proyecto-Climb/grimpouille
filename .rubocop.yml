@@ -56,3 +56,5 @@ Style/FileWrite:
   Enabled: false
 inherit_gem:
   rubocop-discourse: default.yml
+RSpec/NamedSubject:
+  Enabled: false
