@@ -38,4 +38,26 @@ FactoryBot.define do
     height { rand(10..35) }
     crag
   end
+
+  factory :climbing_route, class: 'ClimbingRoute' do
+
+    name { Faker::Music::RockBand.song }
+    grade { GradesConversionService::YDS.keys.sample }
+    style { 'sport' }
+    stars { rand(0..5) }
+    url { Faker::Internet.url }
+    height { rand(10..35) }
+
+    trait :with_all_associations do
+      crag do
+        create(
+          :crag,
+          sector: create(:sector,
+          region: create(:region,
+          province: create(:province,
+          country: create(:country))))
+        )
+      end
+    end
+  end
 end
