@@ -14,18 +14,23 @@ RSpec.describe ClimbingRoute, type: :model do
     end
   end
 
-  describe '#pitch' do
-    before do
-      pitch = Pitch.new(
-        position: 2,
-        length: 20,
-        pitch_grade: instance.grade,
-        angle: 90,
-        bolts: 7
-      )
-      pitch.climbing_route = instance
-    end
+  describe '#create_single_pitch' do
+    context 'when creating a new single pitch climbing_route' do
+      let(:new_climbing_route) { build(:single_pitch_sport_climbing_route) }
 
+      it 'creates its first pitch', :aggregate_failures do
+        expect(new_climbing_route.pitch).to be_nil
+
+        new_climbing_route.save
+        pitch = new_climbing_route.pitch
+
+        expect(pitch).to be_a(Pitch)
+        expect(pitch.climbing_route).to be(new_climbing_route)
+      end
+    end
+  end
+
+  describe '#pitch' do
     it 'returns the first pitch of the climbing_route' do
       expect(instance.pitch).to eq(instance.pitches.first)
     end

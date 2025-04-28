@@ -34,6 +34,7 @@ class ClimbingRoute < ApplicationRecord
 
   scope :by_sector, -> (sector) { includes(crag: :sector).where(crags: { sector: sector }) }
 
+  after_create :create_single_pitch, if: -> { previously_new_record? }
   after_create :sanitize_grade_and_set_standardized_grade
   before_commit :sanitize_grade_and_set_standardized_grade, on: :update, if: -> { :will_save_change_to_grade? }
 
@@ -47,5 +48,15 @@ class ClimbingRoute < ApplicationRecord
 
   def grading_system
     country.grading_system
+  end
+
+  def create_single_pitch
+    pitches.create(
+      position: 1,
+      length: height,
+      pitch_grade: grade,
+      angle: angle,
+      bolts: 0 # TODO Figure where to get this data from
+    )
   end
 end
