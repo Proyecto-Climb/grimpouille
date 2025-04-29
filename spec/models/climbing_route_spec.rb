@@ -28,6 +28,19 @@ RSpec.describe ClimbingRoute, type: :model do
         expect(pitch.climbing_route).to be(new_climbing_route)
       end
     end
+
+    context 'when updating a single pitch climbing_route' do
+      let(:pitch) { instance.pitch }
+
+      it 'does not create a new pitch', :aggregate_failures do
+        expect(pitch).not_to be_nil
+
+        instance.update!(name: 'Gossos: NO!')
+
+        expect(instance.pitches.count).to eq(1)
+        expect(pitch.id).to eq(instance.pitches.last.id)
+      end
+    end
   end
 
   describe '#pitch' do

@@ -34,7 +34,7 @@ class ClimbingRoute < ApplicationRecord
 
   scope :by_sector, -> (sector) { includes(crag: :sector).where(crags: { sector: sector }) }
 
-  after_create :create_single_pitch, if: -> { previously_new_record? }
+  after_create :create_single_pitch
   after_create :sanitize_grade_and_set_standardized_grade
   before_commit :sanitize_grade_and_set_standardized_grade, on: :update, if: -> { :will_save_change_to_grade? }
 
