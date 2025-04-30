@@ -28,10 +28,10 @@ canada = Country.create!(name: 'Canada', grading_system: 'YDS')
 puts 'Creating British Columbia province'
 bc = Province.create!(name: 'British Columbia', country: canada)
 
-puts 'Creating okanagan_valley region'
+puts 'Creating Okanagan Valley region'
 okanagan_valley = Region.create!(name: 'Okanagan Valley', province: bc)
 
-puts 'Creating skaha sector'
+puts 'Creating Skaha sector'
 skaha = Sector.create!(name: 'Skaha', region: okanagan_valley)
 
 uniqs_crag_records = AirtableSeed.all.uniq { |record| record['Crag'] }
@@ -46,7 +46,7 @@ AirtableSeed.all.each do |route_data|
     puts "Creating #{route_data['Route name']} route"
     climbing_route = ClimbingRoute.create!(
       name: route_data['Route name'],
-      grade: route_data['Grade'],
+      grade: route_data['Grade'] || '5.0',
       style: AirtableSeed.format_style(route_data['Style']),
       crag: Crag.find_by_name(route_data['Crag']),
       stars: route_data['Stars'],
@@ -54,15 +54,15 @@ AirtableSeed.all.each do |route_data|
       height: route_data['Height']
       )
 
-    pitch = Pitch.new(
-      position: 1,
-      length: climbing_route.height,
-      pitch_grade: climbing_route.grade,
-      angle: 90,
-      bolts: route_data['Bolts']
-    )
+    # pitch = Pitch.new(
+    #   position: 1,
+    #   length: climbing_route.height,
+    #   pitch_grade: climbing_route.grade,
+    #   angle: rand(1..5),
+    #   bolts: route_data['Bolts']
+    # )
 
-    pitch.climbing_route = climbing_route
-    pitch.save!
+    # pitch.climbing_route = climbing_route
+    # pitch.save!
   end
 end

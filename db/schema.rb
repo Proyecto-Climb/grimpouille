@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_04_26_181733) do
+ActiveRecord::Schema[7.0].define(version: 2025_04_29_040340) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_26_181733) do
   create_table "climbing_routes", force: :cascade do |t|
     t.string "name"
     t.string "grade"
-    t.integer "style", default: 5
+    t.integer "style", default: 0
     t.bigint "crag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -35,7 +35,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_26_181733) do
     t.string "url"
     t.integer "height", default: 0
     t.integer "standardized_grade"
-    t.integer "angle", default: 6
     t.index ["crag_id"], name: "index_climbing_routes_on_crag_id"
   end
 
@@ -69,7 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_26_181733) do
     t.integer "position"
     t.string "pitch_grade"
     t.integer "bolts"
-    t.integer "angle"
+    t.integer "angle", default: 0
     t.bigint "climbing_route_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
