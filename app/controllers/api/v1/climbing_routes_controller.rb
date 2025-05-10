@@ -20,14 +20,8 @@ module Api
         @project = ClimbingRoute.find_by(id: params[:climbing_route][:id])
 
         if @project
-          training_routes = ClimbingRoute.where(
-                                            standardized_grade: ...@project.standardized_grade,
-                                            style: @project.style
-                                          )
-            .order("RANDOM()")
-
-          recommended_routes = training_routes.limit(5)
-
+          training_routes = select_training_routes
+          recommended_routes = training_routes#.limit(5)
           @response = enhance_response(@project, recommended_routes)
 
           render json: { project: { name: @project.name, grade: @project.grade, crag: @project.crag.name }, recommendations: @response }, status: :ok

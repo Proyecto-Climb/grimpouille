@@ -16,20 +16,11 @@ class ClimbingRoute < ApplicationRecord
   validates :height, numericality: { only_integer: true }
 
   enum :style, {
+    unknown: 0,
     sport: 1,
     trad: 2,
     mixed: 3,
-    top_rope: 4,
-    unknown: 5
-  }, validate: true
-
-  enum :angle, {
-    slab: 1,
-    vertical: 2,
-    slight_overhang: 3,
-    overhang: 4,
-    roof: 5,
-    unknown_angle: 6
+    top_rope: 4
   }, validate: true
 
   scope :by_sector, -> (sector) { includes(crag: :sector).where(crags: { sector: sector }) }
@@ -55,7 +46,7 @@ class ClimbingRoute < ApplicationRecord
       position: 1,
       length: height,
       pitch_grade: grade,
-      angle: angle,
+      angle: rand(1..5), # TODO Figure where to get this data from
       bolts: 0 # TODO Figure where to get this data from
     )
   end

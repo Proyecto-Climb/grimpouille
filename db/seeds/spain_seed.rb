@@ -7,7 +7,7 @@ def seed_spain(ines, steph)
   puts 'Creating Catalunya province'
   catalunya = Province.create!(name: 'Catalunya', country: spain)
 
-  puts 'Creating tarragona region'
+  puts 'Creating Tarragona region'
   tarragona = Region.create!(name: 'Tarragona', province: catalunya)
 
   puts 'Creating Siurana sector'
@@ -24,14 +24,14 @@ def seed_spain(ines, steph)
     crag: herbolari
   )
 
-  brain_storming_pitch = Pitch.create!(
-    length: 22,
-    position: 1,
-    pitch_grade: '6b',
-    bolts: 8,
-    angle: 2,
-    climbing_route: brain_storming
-  )
+  # brain_storming_pitch = Pitch.create!(
+  #   length: 22,
+  #   position: 1,
+  #   pitch_grade: '6b',
+  #   bolts: 8,
+  #   angle: 2,
+  #   climbing_route: brain_storming
+  # )
 
   puts 'Creating Brain Storming climb for Ines'
   brain_storming_ines = Climb.create!(climber: ines, climbing_route: brain_storming, status: 4) #, attempts: 2)
